@@ -5,21 +5,21 @@ btnBack.onclick=function(){
 
 
 btnSign.onclick=function(){
-    let newUser = inptSignUpUser.value
-  let newPass = inptSignUpPass.value
-  let verifyPass = inptVerify.value
-  let queryUserExist = "SELECT username FROM user WHERE username = " + '"' + newUser + '"'
-  let queryNew = "INSERT INTO user (username,pass) VALUES ('" + newUser + "', '" + newPass + "')"
-       req2 = Ajax("https://ormond.creighton.edu/courses/375/ajax-connection.php", "POST", "host=ormond.creighton.edu&user=asc86171&pass=" + "BIA375" + "&database=asc86171&query=" + queryUserExist)   
+    let newUsername = inptSignUpUser.value
+  let newPassword = inptSignUpPass.value
+  let checkPass = inptVerify.value
+  let queryUserCheck = "SELECT username FROM user WHERE username = " + '"' + newUsername + '"'
+  let queryBest = "INSERT INTO user (username,pass) VALUES ('" + newUsername + "', '" + newPassword + "')"
+       req2 = Ajax("https://ormond.creighton.edu/courses/375/ajax-connection.php", "POST", "host=ormond.creighton.edu&user=asc86171&pass=" + "BIA375" + "&database=asc86171&query=" + queryUserCheck)   
           if (req2.status == 200) { //everything worked.
               results1 = JSON.parse(req2.responseText)
               if (results1.length > 0) {
                 lblVerified.value = "Please choose another username"
               } else {
-                    if (newPass !== verifyPass) {
+                    if (newPassword !== checkPass) {
                     lblVerified.value = "Verified password needs to match"
                                         } else {
-                                              req4 = Ajax("https://ormond.creighton.edu/courses/375/ajax-connection.php", "POST", "host=ormond.creighton.edu&user=asc86171&pass=" + "BIA375" + "&database=asc86171&query=" + queryNew)  
+                                              req4 = Ajax("https://ormond.creighton.edu/courses/375/ajax-connection.php", "POST", "host=ormond.creighton.edu&user=asc86171&pass=" + "BIA375" + "&database=asc86171&query=" + queryBest)  
                                                  if (req4.status == 200) { //everything worked.
                                                   lblResult.value = "Registration successful! Please login."
                                                   ChangeForm(Home)

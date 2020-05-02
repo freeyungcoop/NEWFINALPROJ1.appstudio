@@ -10,10 +10,9 @@ btnRegister.onclick=function(){
 
 
 btnLogin.onclick=function(){
-   let checkPass = inptPassword.value
-    let checkUser = inptUsername.value
-    //let queryCurrentUser = "SELECT username FROM user WHERE username = " + '"' + checkUser + '"' 
-    let query = "SELECT username, pass FROM user WHERE username = " + "'" + checkUser + "'" + "AND pass = " + "'" + checkPass +  "'"
+   let checkPassword = inptPassword.value
+    let checkUsername = inptUsername.value
+    let query = "SELECT username, pass FROM user WHERE username = " + "'" + checkUsername + "'" + "AND pass = " + "'" + checkPassword +  "'"
     req1 = Ajax("https://ormond.creighton.edu/courses/375/ajax-connection.php", "POST", "host=ormond.creighton.edu&user=asc86171&pass=BIA375&database=asc86171&query=" +  query)  
     if (req1.status == 200) { //everything worked.
         results = JSON.parse(req1.responseText)
